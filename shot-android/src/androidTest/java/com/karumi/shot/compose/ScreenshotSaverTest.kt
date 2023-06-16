@@ -5,11 +5,11 @@ import android.graphics.Bitmap
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.rule.GrantPermissionRule
 import com.karumi.shot.AndroidStorageInfo
-import com.nhaarman.mockitokotlin2.whenever
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import org.junit.*
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import java.io.File
 import java.nio.charset.Charset
@@ -39,13 +39,13 @@ class ScreenshotSaverTest {
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
-        whenever(nodeGenerator.generateBitmap(node)).thenReturn(Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888, true))
-        whenever(nodeGenerator.generateBitmap(anyOtherNode)).thenReturn(Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888, true))
-        whenever(screenshotToSave.source).thenReturn(node)
-        whenever(otherScreenshotToSave.source).thenReturn(anyOtherNode)
-        whenever(screenshotToSave.data).thenReturn(anyScreenshotMetadata)
-        whenever(otherScreenshotToSave.data).thenReturn(anyOtherScreenshotMetadata)
+        MockitoAnnotations.openMocks(this)
+        Mockito.`when`(nodeGenerator.generateBitmap(node)).thenReturn(Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888, true))
+        Mockito.`when`(nodeGenerator.generateBitmap(anyOtherNode)).thenReturn(Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888, true))
+        Mockito.`when`(screenshotToSave.source).thenReturn(node)
+        Mockito.`when`(otherScreenshotToSave.source).thenReturn(anyOtherNode)
+        Mockito.`when`(screenshotToSave.data).thenReturn(anyScreenshotMetadata)
+        Mockito.`when`(otherScreenshotToSave.data).thenReturn(anyOtherScreenshotMetadata)
         val context = ApplicationProvider.getApplicationContext<Context>()
         saver = ScreenshotSaver(context.packageName, nodeGenerator)
         clearSdCardFiles()

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.widget.Toolbar
 import android.view.View
+import android.widget.TextView
 import com.github.salomonbrys.kodein.Kodein.Module
 import com.github.salomonbrys.kodein.bind
 import com.github.salomonbrys.kodein.instance
@@ -13,13 +14,17 @@ import com.karumi.domain.model.SuperHero
 import com.karumi.domain.usecase.GetSuperHeroes
 import com.karumi.ui.presenter.SuperHeroesPresenter
 import com.karumi.ui.view.adapter.SuperHeroesAdapter
-import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : BaseActivity(), SuperHeroesPresenter.View {
 
     override val presenter: SuperHeroesPresenter by injector.instance()
     private lateinit var adapter: SuperHeroesAdapter
     override val layoutId: Int = R.layout.main_activity
+
+    private val tv_empty_case by lazy { findViewById<TextView>(R.id.tv_empty_case) }
+    private val progress_bar by lazy { findViewById<androidx.core.widget.ContentLoadingProgressBar>(R.id.progress_bar) }
+    private val recycler_view by lazy { findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recycler_view) }
+    private val toolbar by lazy { findViewById<Toolbar>(R.id.toolbar) }
     override val toolbarView: Toolbar
         get() = toolbar
 

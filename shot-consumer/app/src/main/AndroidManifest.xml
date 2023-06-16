@@ -14,7 +14,8 @@
       android:theme="@style/AppTheme"
       android:name=".SuperHeroesApplication"
       >
-    <activity android:name=".ui.view.MainActivity">
+    <activity android:name=".ui.view.MainActivity"
+		android:exported="false">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 

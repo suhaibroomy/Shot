@@ -5,13 +5,12 @@ plugins {
 apply plugin: "shot"
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.karumi.shotconsumercompose"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -27,7 +26,7 @@ android {
             applicationIdSuffix ".debug"
         }
     }
-    flavorDimensions "api"
+    flavorDimensions 'api'
     productFlavors {
         staging {
             dimension "api"
@@ -39,18 +38,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
-        useIR = true
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerExtensionVersion "1.4.7"
         kotlinCompilerVersion kotlin_version
     }
     packagingOptions {
@@ -61,6 +59,9 @@ android {
             execution "ANDROIDX_TEST_ORCHESTRATOR"
         }
     }
+
+    namespace 'com.karumi.shotconsumercompose'
+    testNamespace 'com.karumi.shotconsumercompose.test'
 }
 
 shot {
@@ -70,24 +71,24 @@ shot {
 
 dependencies {
 
-    implementation "androidx.core:core-ktx:1.3.2"
-    implementation "androidx.appcompat:appcompat:1.2.0"
-    implementation "com.google.android.material:material:1.3.0"
+    implementation "androidx.core:core-ktx:1.10.1"
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "com.google.android.material:material:1.9.0"
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.ui:ui-tooling:$compose_version"
-    implementation "androidx.activity:activity-compose:1.3.0-alpha05"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+    implementation "androidx.activity:activity-compose:1.7.2"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
 
-    testImplementation "junit:junit:4.13.1"
+    testImplementation "junit:junit:4.13.2"
 
-    androidTestUtil "androidx.test:orchestrator:1.4.1"
+    androidTestUtil "androidx.test:orchestrator:1.4.2"
 
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.3.0"
-    androidTestImplementation "androidx.test:core-ktx:1.3.0"
-    androidTestImplementation "androidx.test:core:1.3.0"
-    androidTestImplementation "androidx.test:runner:1.3.0"
-    androidTestImplementation "androidx.test.ext:junit:1.1.2"
-    androidTestImplementation "androidx.test.ext:junit-ktx:1.1.2"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
+    androidTestImplementation "androidx.test:core-ktx:1.5.0"
+    androidTestImplementation "androidx.test:core:1.5.0"
+    androidTestImplementation "androidx.test:runner:1.5.2"
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+    androidTestImplementation "androidx.test.ext:junit-ktx:1.1.5"
 }

@@ -8,13 +8,16 @@ import com.github.salomonbrys.kodein.instance
 import com.github.salomonbrys.kodein.provider
 import com.karumi.R
 import com.karumi.ui.presenter.CursorPresenter
-import kotlinx.android.synthetic.main.cursor_activity.*
-import kotlinx.android.synthetic.main.main_activity.toolbar
+import android.widget.EditText
 
 class CursorActivity : BaseActivity(), CursorPresenter.View {
 
     override val layoutId: Int = R.layout.cursor_activity
     override val presenter: CursorPresenter by injector.instance()
+
+    private val toolbar by lazy { findViewById<Toolbar>(R.id.toolbar) }
+    private val et_cursor by lazy { findViewById<EditText>(R.id.et_cursor) }
+
     override val toolbarView: Toolbar
         get() = toolbar
 

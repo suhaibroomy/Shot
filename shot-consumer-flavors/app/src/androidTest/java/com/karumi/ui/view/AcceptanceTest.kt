@@ -15,7 +15,6 @@ import com.karumi.shot.ScreenshotTest
 import org.junit.After
 import org.junit.Before
 import org.junit.runner.RunWith
-import org.mockito.MockitoAnnotations
 import com.karumi.shot.ActivityScenarioUtils.waitForActivity
 
 @LargeTest
@@ -24,8 +23,7 @@ abstract class AcceptanceTest<T : Activity>(private val clazz: Class<T>) : Scree
     private var scenario: ActivityScenario<T>? = null
 
     @Before
-    fun setup() {
-        MockitoAnnotations.initMocks(this)
+    open fun setup() {
         val app = InstrumentationRegistry.getInstrumentation().targetContext.asApp()
         app.resetInjection()
         app.overrideModule = testDependencies

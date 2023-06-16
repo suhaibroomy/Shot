@@ -8,7 +8,7 @@ import com.karumi.shot.ScreenshotTest
 import com.karumi.ui.presenter.SuperHeroesPresenter
 import com.karumi.ui.view.adapter.SuperHeroViewHolder
 import org.junit.Test
-import org.mockito.Mockito.mock
+import io.mockk.mockk
 
 class SuperHeroViewHolderTest : ScreenshotTest {
 
@@ -65,7 +65,7 @@ class SuperHeroViewHolderTest : ScreenshotTest {
         val view = inflater.inflate(R.layout.super_hero_row, null, false)
         return SuperHeroViewHolder(
             view,
-            mock<SuperHeroesPresenter>(SuperHeroesPresenter::class.java)
+            mockk<SuperHeroesPresenter>()
         )
     }
 

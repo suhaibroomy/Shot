@@ -7,12 +7,12 @@ import com.github.salomonbrys.kodein.instance
 import com.github.salomonbrys.kodein.provider
 import com.karumi.R
 import com.karumi.ui.presenter.ScrollPresenter
-import kotlinx.android.synthetic.main.main_activity.toolbar
 
 class ScrollActivity : BaseActivity(), ScrollPresenter.View {
 
     override val layoutId: Int = R.layout.scroll_activity
     override val presenter: ScrollPresenter by injector.instance()
+    private val toolbar by lazy { findViewById<Toolbar>(R.id.toolbar) }
     override val toolbarView: Toolbar
         get() = toolbar
 

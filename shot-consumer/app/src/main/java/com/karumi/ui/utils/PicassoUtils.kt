@@ -11,4 +11,4 @@ fun ImageView.setImageBackground(path: String?) {
 }
 
 val Context.picasso: Picasso
-    get() = Picasso.with(this)
+    get() = Picasso.get()

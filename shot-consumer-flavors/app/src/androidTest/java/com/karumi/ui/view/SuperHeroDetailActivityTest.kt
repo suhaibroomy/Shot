@@ -6,16 +6,22 @@ import com.github.salomonbrys.kodein.bind
 import com.github.salomonbrys.kodein.instance
 import com.karumi.data.repository.SuperHeroRepository
 import com.karumi.domain.model.SuperHero
-import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Test
-import org.mockito.Mock
+import org.junit.Before
+import io.mockk.mockk
+import io.mockk.every
 
 class SuperHeroDetailActivityTest : AcceptanceTest<SuperHeroDetailActivity>(
     SuperHeroDetailActivity::class.java
 ) {
 
-    @Mock
     private lateinit var repository: SuperHeroRepository
+
+    @Before
+    override fun setup() {
+        repository = mockk<SuperHeroRepository>()
+        super.setup()
+    }
 
     @Test
     fun showsAvengersBadgeIfSuperHeroIsPartOfTheAvengersTeam() {
@@ -39,7 +45,7 @@ class SuperHeroDetailActivityTest : AcceptanceTest<SuperHeroDetailActivity>(
         val superHeroName = "SuperHero"
         val superHeroDescription = "Super Hero Description"
         val superHero = SuperHero(superHeroName, null, isAvenger, superHeroDescription)
-        whenever(repository.getByName(superHeroName)).thenReturn(superHero)
+        every { repository.getByName(superHeroName) } returns superHero
         return superHero
     }
 
